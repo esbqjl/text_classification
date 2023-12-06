@@ -1,12 +1,12 @@
 import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn import svm
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, precision_recall_fscore_support
 from sklearn.ensemble import RandomForestClassifier
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-
+import csv
 # Download necessary NLTK data
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -53,7 +53,7 @@ X_val = vectorizer.transform(X_val_texts)
 X_test = vectorizer.transform(X_test_texts)
 
 # Train SVM model
-model = svm.SVC(kernel='linear', C=0.5)
+model = svm.SVC(kernel='rbf', C=0.5)
 model.fit(X_train, y_train)
 # random forest
 #model = RandomForestClassifier(n_estimators=100, random_state=42)
@@ -67,3 +67,32 @@ print("\nValidation Classification Report:\n", classification_report(y_val, y_va
 y_test_pred = model.predict(X_test)
 print("Test Accuracy:", accuracy_score(y_test, y_test_pred))
 print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred))
+
+def evaluate_and_save(feature, model, X, y, dataset_name, csv_writer):
+    y_pred = model.predict(X)
+    accuracy = accuracy_score(y, y_pred)
+    
+    # Getting weighted metrics
+    precision, recall, f1_score, _ = precision_recall_fscore_support(y, y_pred, average='weighted')
+    
+    csv_writer.writerow([feature, dataset_name, accuracy, precision, recall, f1_score])
+
+# Open a CSV file to write the results
+with open('./RF_result.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    # Writing the headers
+    # writer.writerow(['kernel', 'Dataset', 'Accuracy', 'Precision', 'Recall', 'F1 Score'])
+    writer.writerow(['n_trees', 'Dataset', 'Accuracy', 'Precision', 'Recall', 'F1 Score'])
+    # Evaluate on validation data and save
+    # kernels=["linear","rbf","sigmoid","poly"]
+    n_s= [100,200,300,400]
+    # for i in kernels:
+    for i in n_s:    
+        # model = svm.SVC(kernel=i, C=0.5)
+        model = RandomForestClassifier(n_estimators=i, random_state=42)
+        model.fit(X_train, y_train)
+        y_val_pred = model.predict(X_val)
+        evaluate_and_save(i, model, X_val, y_val, 'Validation', writer)
+
+        # Evaluate on test data and save
+        evaluate_and_save(' ', model, X_test, y_test, 'Test', writer)
