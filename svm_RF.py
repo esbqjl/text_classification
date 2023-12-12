@@ -7,9 +7,10 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import csv
+import pickle
 # Download necessary NLTK data
-nltk.download('punkt')
-nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('stopwords')
 
 # Function to read JSONL file
 def read_jsonl(file_path):
@@ -53,11 +54,11 @@ X_val = vectorizer.transform(X_val_texts)
 X_test = vectorizer.transform(X_test_texts)
 
 # Train SVM model
-model = svm.SVC(kernel='rbf', C=0.5)
-model.fit(X_train, y_train)
-# random forest
-#model = RandomForestClassifier(n_estimators=100, random_state=42)
+#model = svm.SVC(kernel='rbf', C=0.5)
 #model.fit(X_train, y_train)
+# random forest
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train, y_train)
 # Evaluate on validation data
 y_val_pred = model.predict(X_val)
 print("Validation Accuracy:", accuracy_score(y_val, y_val_pred))
@@ -67,6 +68,14 @@ print("\nValidation Classification Report:\n", classification_report(y_val, y_va
 y_test_pred = model.predict(X_test)
 print("Test Accuracy:", accuracy_score(y_test, y_test_pred))
 print("\nTest Classification Report:\n", classification_report(y_test, y_test_pred))
+with open ('tfidf_vectorizer.pkl','wb') as file:
+    pickle.dump(vectorizer,file)
+# with open('SVC_model.pkl','wb') as file:
+#     pickle.dump(model,file)
+
+with open('RF_model.pkl','wb') as file:
+    pickle.dump(model,file)
+
 
 def evaluate_and_save(feature, model, X, y, dataset_name, csv_writer):
     y_pred = model.predict(X)
@@ -78,6 +87,7 @@ def evaluate_and_save(feature, model, X, y, dataset_name, csv_writer):
     csv_writer.writerow([feature, dataset_name, accuracy, precision, recall, f1_score])
 
 # Open a CSV file to write the results
+
 with open('./RF_result.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     # Writing the headers
