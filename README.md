@@ -4,7 +4,7 @@ SVM works by finding a hyperplane in a high-dimensional space that best separate
 Mathematical Foundation:
 At its core, SVM seeks to solve the following optimization problem:
 |||W||^2/2 + C\sum^m_{i=1} ζi
-![alt text]([https://github.com/esbqjl/text_classification/svm_1.jpg](https://github.com/esbqjl/text_classification/blob/main/svm_1.jpg))
+![alt text](https://github.com/esbqjl/text_classification/blob/main/svm_1.jpg)
 Here, w is the weight vector normal to the hyperplane,ζi are slack variables representing margin violations, and C is a regularization parameter.
 
 Random Forest:
