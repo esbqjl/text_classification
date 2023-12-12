@@ -65,7 +65,7 @@ when you need to switch to random forest, uncomment the svm code and comment svm
 
 Wenjun - wjz@bu.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/esbqjl/text_classification)
+Project Link: [https://github.com/esbqjl/text_classification](https://github.com/esbqjl/text_classification)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
