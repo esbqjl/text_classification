@@ -16,3 +16,60 @@ or mean prediction (regression) of the individual trees. Random Forest is ensemb
 
 In this practise, we are using sklearn library to implement SVM and Randomforest for better scaling the performance in various situation.
 
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+The main.py need to use nltk, csv, pickle, sklearn library to run.
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/esbqjl/text_classification.git
+   ```
+2. Install various packages
+   ```sh
+   pip install sklearn
+   ```
+   ```sh
+   pip install nltk
+   ```
+   ```sh
+   pip install csv
+   ```
+   ```sh
+   pip install pickle
+   ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Just simply run 
+ ```sh
+python3 svm_RF.py
+ ```
+when you need to switch to random forest, uncomment the svm code and comment svm code.
+
+
+<!-- Contact -->
+## Contact
+
+Wenjun - wjz@bu.com
+
+Project Link: [https://github.com/your_username/repo_name](https://github.com/esbqjl/text_classification)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+
