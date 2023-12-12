@@ -13,5 +13,6 @@ When applied to text classification, Random Forest operates by creating a multit
 or mean prediction (regression) of the individual trees. Random Forest is ensemble learning, combining multiple decision trees to improve the overall performance.
 
 ![alt text](https://github.com/esbqjl/text_classification/blob/main/RF_1.jpg)
+
 In this practise, we are using sklearn library to implement SVM and Randomforest for better scaling the performance in various situation.
 
