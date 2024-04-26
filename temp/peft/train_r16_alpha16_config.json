@@ -1,0 +1,18 @@
+{
+    "label_size": 6,
+    "model_dir": "./temp/peft",
+    "learning_rate": 0.0001,
+    "batch_size": 64,
+    "epoch": 8,
+    "ckpt_name": "pytorch_model_r16_alpha16.bin",
+    "vocab_name": "vocab.json",
+    "bert_based_model_dir": "bert-base-uncased",
+    "lora_r": 16,
+    "lora_alpha": 16,
+    "target_modules": [
+        "query",
+        "key",
+        "value"
+    ],
+    "device": "cuda"
+}
