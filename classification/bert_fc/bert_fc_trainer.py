@@ -158,10 +158,10 @@ class BertFCTrainer(BaseTrainer):
                         '%.4f' % avg_loss if avg_loss else avg_loss
                     )
                 )
-                # if avg_loss and avg_loss < best_loss:
-                #     best_loss = avg_loss
-                #     torch.save(self.model.state_dict(),'{}/{}'.format(self.model_dir,self.ckpt_name))
-                #     logger.info("model_saved")
+                if avg_loss and avg_loss < best_loss:
+                    best_loss = avg_loss
+                    torch.save(self.model.state_dict(),'{}/{}'.format(self.model_dir,self.ckpt_name))
+                    logger.info("model_saved")
         logger.info("finished")
     
     def validate(self,validate_texts,validate_labels,sample_size=100):

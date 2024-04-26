@@ -147,16 +147,16 @@ def trainer(config,vocab,bert_tokenizer):
                     '%.4f' % avg_loss if avg_loss else avg_loss
                 )
             )
-            # if avg_loss and avg_loss < best_loss:
-            #     best_loss = avg_loss
-            #     torch.save(model.state_dict(),'{}/{}'.format(model_dir,ckpt_name))
-            #     logger.info("model_saved")
+            if avg_loss and avg_loss < best_loss:
+                best_loss = avg_loss
+                torch.save(model.state_dict(),'{}/{}'.format(model_dir,ckpt_name))
+                logger.info("model_saved")
     logger.info("finished")
     
 
 if __name__ == "__main__":
-    lora_r_list = [8,16,32]
-    lora_alpha_list = [8,16,32,64]
+    lora_r_list = [32]
+    lora_alpha_list = [64]
     labels_dict=setup_data_config('./data/config.jsonl')
     train_path, dev_path, test_path = \
         'data/train.jsonl','data/validation.jsonl','data/test.jsonl'
@@ -188,7 +188,7 @@ if __name__ == "__main__":
             
             config.lora_r = lora_r
             config.lora_alpha = lora_alpha
-            # trainer(config,vocab,bert_tokenizer)
+            trainer(config,vocab,bert_tokenizer)
             
             predictor= PeftPredictor(
                 config.bert_based_model_dir,config.model_dir,config.lora_r,config.lora_alpha
