@@ -1,4 +1,4 @@
-# text_classification
+# Text Classification
 The Support Vector Machine (SVM) is a powerful and versatile algorithm used primarily for classification tasks. In the context of text classification,
 SVM works by finding a hyperplane in a high-dimensional space that best separates different classes of data.
 Mathematical Foundation:
@@ -15,6 +15,9 @@ or mean prediction (regression) of the individual trees. Random Forest is ensemb
 ![alt text](https://github.com/esbqjl/text_classification/blob/main/RF_1.jpg)
 
 In this practise, we are using sklearn library to implement SVM and Randomforest for better scaling the performance in various situation.
+## Deep Learning
+
+for Deep learning part(bert) please switch branch to bert_lora
 
 ## Getting Started
 
